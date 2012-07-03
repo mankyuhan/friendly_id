@@ -148,9 +148,10 @@ an example of one way to set this up:
           columns = friendly_id_config.scope_columns
           matched = columns.inject(conflicts) do |memo, column|
             memo.where(column => sluggable.send(column))
-        end
+          end
 
         matched.first
+        end
       end
     end
   end
