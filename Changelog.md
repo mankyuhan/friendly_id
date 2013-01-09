@@ -6,13 +6,27 @@ suggestions, ideas and improvements to FriendlyId.
 * Table of Contents
 {:toc}
 
-## 4.0.8 (NOT RELEASED YET)
+## 4.0.9 (2012-10-31)
 
-* Added set_friendly_id method to Globalize module.
+* Fixed support for Rails 3.2.9.rc1
+
+## 4.0.8 (2012-08-01)
+
+* Name internal anonymous class to fix marshall dump/load error (Jess Brown, Philip Arndt and Norman Clarke).
+
+* Avoid using deprecated `update_attribute` (Philip Arndt).
+
+* Added set_friendly_id method to Globalize module (Norman Clarke).
 
 * autoload FriendlyId::Slug; previously this class was not accessible from
   migrations unless required explicitly, which could cause some queries to
-  unexpectedly fail.
+  unexpectedly fail (Norman Clarke).
+
+* Fix Mocha load order (Mark Turner).
+
+* Minor doc updates (Rob Yurkowski).
+
+* Other miscellaneous refactorings and doc updates.
 
 ## 4.0.7 (2012-06-06)
 

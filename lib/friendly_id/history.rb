@@ -42,7 +42,7 @@ method.
       ...
 
       def find_post
-        Post.find params[:id]
+        @post = Post.find params[:id]
 
         # If an old id or a numeric id was used to find the record, then
         # the request path will not match the post_path, and we should do
@@ -127,10 +127,15 @@ method.
         scope = Slug.where("slug = ? OR slug LIKE ?", normalized, wildcard)
         scope = scope.where(:sluggable_type => sluggable_class.to_s)
         scope = scope.where("sluggable_id <> ?", value) unless sluggable.new_record?
+
         if sluggable.friendly_id_config.uses?(:scoped)
           scope = scope.where("scope = ?", sluggable.serialized_scope)
         end
         scope.order("LENGTH(slug) DESC, slug DESC")
+
+        length_command = "LENGTH"
+        length_command = "LEN" if sluggable.connection.adapter_name =~ /sqlserver/i
+        scope.order("#{length_command}(slug) DESC, slug DESC")
       end
     end
   end
