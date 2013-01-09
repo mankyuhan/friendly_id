@@ -131,7 +131,6 @@ method.
         if sluggable.friendly_id_config.uses?(:scoped)
           scope = scope.where("scope = ?", sluggable.serialized_scope)
         end
-        scope.order("LENGTH(slug) DESC, slug DESC")
 
         length_command = "LENGTH"
         length_command = "LEN" if sluggable.connection.adapter_name =~ /sqlserver/i
